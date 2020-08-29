@@ -1,11 +1,16 @@
 use winit::{dpi::PhysicalSize, event::Event, event_loop::EventLoop, window::Window};
 pub use winit::{event::WindowEvent, event_loop::ControlFlow, window::WindowBuilder};
 
+/// Errors that occur while creating an [Application](Application).
 #[derive(Debug, Clone, Copy, PartialEq)]
 pub enum ApplicationCreationError {
+    /// Building the window can fail because of
+    /// denied permission, incompatible system, or lack of memory.
     BuildWindowError,
 }
 
+/// Struct used to initialize the renderer and to run the window.
+/// It is created with the [Aplication::create](Application::create) function.
 pub struct Application {
     event_loop: EventLoop<()>,
     window: Window,
@@ -13,6 +18,11 @@ pub struct Application {
 }
 
 impl Application {
+    /// Create an Application
+    ///
+    /// # Errors
+    ///
+    /// See [ApplicationCreationError](ApplicationCreationError) for the possible failure reasons.
     pub fn create(window_builder: WindowBuilder) -> Result<Self, ApplicationCreationError> {
         let event_loop = EventLoop::new();
         let window = window_builder
@@ -28,6 +38,12 @@ impl Application {
         })
     }
 
+    /// # Warning
+    ///
+    /// Some [WindowEvent](WindowEvent) will never be passed to the `event_handler`:
+    /// * [WindowEvent::CloseRequested](WindowEvent::CloseRequested)
+    /// * [WindowEvent::Resized](WindowEvent::Resized)
+    /// * [WindowEvent::ScaleFactorChanged](WindowEvent::ScaleFactorChanged)
     pub fn run<F>(self, mut event_hanlder: F) -> !
     where
         F: 'static + FnMut(WindowEvent, &mut ControlFlow),
