@@ -4,7 +4,7 @@
 
 This library isn't yet published on [crates.io](https://www.crates.io) but you can add it to your cargo projects
 by adding `wgpu_renderer = { git = https://github.com/Hscowef/wgpu-renderer.git }` to the `[dependencies]` section
-in your `Cargo.toml` however, I would not recommend you to do so (don't do it really) because it is a extremly wip project. It still has almost
+in your `Cargo.toml` however, I would not recommend you to do so (don't do it really) because it is a extremely wip project. It still has almost
 no functionalities and will get a lot modified during the time comming. It is also one of my first computer graphics
 project so it will be far from perfect.
 
