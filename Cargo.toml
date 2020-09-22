@@ -4,9 +4,9 @@ version = "0.1.0"
 authors = ["Le_Charooo <Raphaelmoralibigras@outook.fr>"]
 edition = "2018"
 
-# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
-
 [dependencies]
 wgpu = "0.6.0"
 winit = "0.22.2"
 futures = "0.3.5"
+bytemuck = "1.4.1"
+image = "0.23.9"
